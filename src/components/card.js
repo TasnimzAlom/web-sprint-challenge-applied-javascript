@@ -47,6 +47,21 @@ const Card = (article) => {
   return divCard
 }
 
+const cardAppender = (selector) => {
+  
+  axios.get("https://lambda-times-api.herokuapp.com/articles")
+		.then((response) => {
+      document.querySelector(selector).appendChild(Card(response.data.articles));
+      // console.log(response.data.articles);
+		})
+		.catch(error => {
+			console.log(error.message);
+		});
+}
+
+export { Card, cardAppender }
+
+
  // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -65,19 +80,6 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-const cardAppender = (selector) => {
-  
-  axios.get("https://lambda-times-api.herokuapp.com/articles")
-		.then((response) => {
-      document.querySelector(selector).appendChild(Card(response.data.articles));
-      // console.log(response.data.articles);
-		})
-		.catch(error => {
-			console.log(error.message);
-		});
-}
-
-
 // TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
@@ -86,4 +88,3 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-export { Card, cardAppender }

@@ -11,7 +11,7 @@ const Header = (title, date, temp) => {
     div.appendChild(span1)
 
     const h1s = document.createElement("h1")
-    title.textContent = title
+    h1s.textContent = title
     div.appendChild(h1s)
 
     const span2 = document.createElement("span")

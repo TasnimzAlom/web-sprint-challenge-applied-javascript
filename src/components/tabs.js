@@ -1,27 +1,41 @@
+import axios from "axios"
 
 
 
 const Tabs = (topics) => {
   const div1 = document.createElement("div")
   div1.setAttribute("class", "topics")
+  
+  topics.forEach(newTopic => {
+    const newTab = document.createElement("div")
+    newTab.setAttribute("class", "tab")
+    newTab.textContent = newTopic
+    div1.appendChild(newTab)
+  })
  
   
-  const div2 = document.createElement("div")
-  div2.setAttribute("class", "tabs")
-  div2.textContent = topics
 
-  const div3 = document.createElement("div")
-    div3.setAttribute("class", "tabs")
-  div3.textContent = topics
 
-  const div4 = document.createElement("div")
-  div4.setAttribute("class", "tabs")
-  div4.textContent = topics
+
+ return div1
 }
 
-const tabsAppender = (selector) => {
 
- document.querySelector(selector).appendChild(Tabs("JavaScript", "Bootstrap", "Technology" ));
+
+
+
+
+const tabsAppender = (selector) => {
+  axios.get("https://lambda-times-api.herokuapp.com/topics")
+
+    .then(response => {
+      console.log(response.data.topics)
+     document.querySelector(selector).appendChild(Tabs(response.data.topics))
+  
+  }) 
+  .catch(error => {
+    console.log(error.message)
+  })
 }
 
 export { Tabs, tabsAppender }
