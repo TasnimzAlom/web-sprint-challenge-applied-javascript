@@ -1,5 +1,53 @@
+
+import axios from "axios"
+
+axios.get("https://lambda-times-api.herokuapp.com/articles")
+  
+.then(response => {
+  const {bootstrap, javascript, jquery, node, technology} = response.data.articles
+  const array = [...bootstrap, ...javascript, ...jquery, ...node, ...technology]
+  // console.log(array) 
+  array.forEach(articles => {
+      document.querySelector(".cards-container").appendChild(Card(articles))
+  })    
+})
+.catch(error => {
+  console.log(error.message)
+})
+
+
 const Card = (article) => {
-  // TASK 5
+ 
+  const divCard = document.createElement("div")
+  divCard.setAttribute("class", "card")
+  divCard.addEventListener("click", () => console.log(article.headline))
+
+  const divHeadline = document.createElement("div")
+  divHeadline.setAttribute("class", "headline")
+  divHeadline.textContent = article.headline
+  divCard.appendChild(divHeadline)
+
+  const divAuthor = document.createElement("div")
+  divAuthor.setAttribute("class", "author")
+  divCard.appendChild(divAuthor)
+
+  const divImg = document.createElement("div")
+  divImg.setAttribute("class", "img-container")
+  divAuthor.appendChild(divImg)
+
+  const img = document.createElement("img")
+  img.setAttribute("src", article.authorPhoto)
+  divImg.appendChild(img)
+
+  const span = document.createElement("span")
+  span.textContent =` By ${article.authorName}`
+
+  divAuthor.appendChild(span)
+
+  return divCard
+}
+
+ // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
   // It takes as its only argument an "article" object with `headline`, `authorPhoto` and `authorName` properties.
@@ -17,10 +65,20 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+const cardAppender = (selector) => {
+  
+  axios.get("https://lambda-times-api.herokuapp.com/articles")
+		.then((response) => {
+      document.querySelector(selector).appendChild(Card(response.data.articles));
+      // console.log(response.data.articles);
+		})
+		.catch(error => {
+			console.log(error.message);
+		});
 }
 
-const cardAppender = (selector) => {
-  // TASK 6
+
+// TASK 6
   // ---------------------
   // Implement this function that takes a css selector as its only argument.
   // It should obtain articles from this endpoint: `https://lambda-times-api.herokuapp.com/articles`
@@ -28,6 +86,4 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
-
 export { Card, cardAppender }

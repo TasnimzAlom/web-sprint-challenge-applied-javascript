@@ -26,7 +26,7 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 - [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
 - [ ] Create a new branch: `git checkout -b <firstName-lastName>`.
 - [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: `git push origin <firstName-lastName>`. testing.
+- [ ] Push commits: `git push origin <firstName-lastName>`. 
 
 #### Launching the App
 
@@ -75,7 +75,12 @@ There are two possible ways to submit this project to Canvas. Lambda Staff will 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. What is the DOM?
+-The dom is the "document object" representation of all of the html elements on a webpage.
 2. What is an event?
+-An event is the interaction that takes place between a webpage and the user.
 3. What is an event listener?
+-An event listener is a function that runs when its triggered by the action set to it through javascript.
 4. Why would we convert a NodeList into an Array?
+-We convert nodeLists into arrays because it provides us with the access to the array methods required to iterate over arrays-i.e the .forEach method.
 5. What is a component?
+-A component is a "chunk" of code that is created to keep the code dry and reusable. It consists of multiple languages such as HTML, CSS, and JavaScript, and they all work together to give us a  
